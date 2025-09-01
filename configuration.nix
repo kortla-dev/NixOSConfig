@@ -11,6 +11,8 @@
     ./nixosModules/vim.nix
   ];
 
+  home-manager.backupFileExtension = "backup";
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -18,10 +20,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -76,17 +75,16 @@
     isNormalUser = true;
     description = "Neill Engelbrecht";
     extraGroups = [ "root" "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    packages = with pkgs;
+      [
+        #  thunderbird
+      ];
   };
 
- home-manager = {
-   #specialArgs = { inherit inputs; };
-   users = {
-     kortla = import ./users/kortla/home.nix;
-   };
- };
+  home-manager = {
+    #specialArgs = { inherit inputs; };
+    users = { kortla = import ./users/kortla/home.nix; };
+  };
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -102,7 +100,7 @@
     unzip
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     xclip
-  #  wget
+    #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

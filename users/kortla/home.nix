@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
-
-{
+let
+  user = {
+    name = "Neill Engelbrecht";
+    email = "engelbrecht.neill@gmail.com";
+  };
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "kortla";
@@ -50,20 +54,26 @@
     '';
   };
 
+  home.file.".ssh/${config.home.username}.pub".text =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ0Nwz0rlwT6JTi0Tm9N1BuIXIEokZKFVLOzqTZOuPKb engelbrecht.neill@gmail.com";
+  home.file.".ssh/allowed_signers".text =
+    "${user.email} ${config.home.file.".ssh/${config.home.username}.pub".text}";
+
   programs.git = {
     enable = true;
-    userName = "Neill Engelbrecht";
-    userEmail = "engelbrecht.neill@gmail.com";
-    signing = {
-      format = "ssh";
-      key = "~/.ssh/kortla.pub";
-      signByDefault = true;
-    };
     extraConfig = {
       user = {
-        name = "Neill Engelbrecht";
-        email = "engelbrecht.neill@gmail.com";
+        name = user.name;
+        email = user.email;
+        signingkey =
+          "${config.home.homeDirectory}/.ssh/${config.home.username}.pub";
       };
+      gpg = {
+        format = "ssh";
+        ssh.allowedSignersFile =
+          "${config.home.homeDirectory}/.ssh/allowed_signers";
+      };
+      commit.gpgsign = true;
       safe.directory = "/etc/nixos";
     };
   };
