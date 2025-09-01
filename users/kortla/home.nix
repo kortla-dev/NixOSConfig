@@ -18,8 +18,8 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages =
-    (import ./externalDependencies/neovim-config-deps.nix { inherit pkgs; }) ++
-    (with pkgs; [
+    (import ./externalDependencies/neovim-config-deps.nix { inherit pkgs; })
+    ++ (with pkgs; [
       # fonts
       nerd-fonts.fira-mono
 
@@ -33,12 +33,9 @@
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  home.file = {
-  };
+  home.file = { };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  home.sessionVariables = { EDITOR = "nvim"; };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -57,32 +54,43 @@
     enable = true;
     userName = "Neill Engelbrecht";
     userEmail = "engelbrecht.neill@gmail.com";
+    signing = {
+      format = "ssh";
+      key = "~/.ssh/kortla.pub";
+      signByDefault = true;
+    };
+    extraConfig = {
+      user = {
+        name = "Neill Engelbrecht";
+        email = "engelbrecht.neill@gmail.com";
+      };
+      safe.directory = "/etc/nixos";
+    };
   };
 
- programs.ghostty = {
-   enable = true;
-   settings = {
-     font-size = 12;
-     font-family = "FiraMono Nerd Font";
-     font-style = "Medium";
-     font-style-bold = "false";
-     font-style-italic = "false";
-     font-style-bold-italic = "false";
-     font-synthetic-style = "false";
+  programs.ghostty = {
+    enable = true;
+    settings = {
+      font-size = 12;
+      font-family = "FiraMono Nerd Font";
+      font-style = "Medium";
+      font-style-bold = "false";
+      font-style-italic = "false";
+      font-style-bold-italic = "false";
+      font-synthetic-style = "false";
 
-     theme = "Ubuntu";
+      theme = "Ubuntu";
 
-     window-padding-x = 5;
-     window-padding-y = 5;
-     window-padding-balance = "true";
+      window-padding-x = 5;
+      window-padding-y = 5;
+      window-padding-balance = "true";
 
-     gtk-titlebar-hide-when-maximized = "true";
-   };
- };
+      gtk-titlebar-hide-when-maximized = "true";
+    };
+  };
 
-
- programs.neovim = {
-   enable = true;
-   viAlias = true;
- };
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+  };
 }
