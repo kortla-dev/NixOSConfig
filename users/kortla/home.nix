@@ -44,15 +44,7 @@ in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.bash = {
-    enable = true;
-    initExtra = ''
-      function git_branch() {
-        git branch --show-current 2>/dev/null
-      }
-      PS1='\n\[\e[48;5;27m\]<\s>\[\e[38;5;220;48;5;239m\][\u@\h\[\e[22;39m\] \[\e[38;5;220;1m\]\W]\[\e[48;5;23m\]$(git_branch):\[\e[0m\] '
-    '';
-  };
+  programs.fish.enable = true;
 
   home.file.".ssh/${config.home.username}.pub".text =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ0Nwz0rlwT6JTi0Tm9N1BuIXIEokZKFVLOzqTZOuPKb engelbrecht.neill@gmail.com";
@@ -96,6 +88,8 @@ in {
       window-padding-balance = "true";
 
       gtk-titlebar-hide-when-maximized = "true";
+
+      command = "${pkgs.fish.outPath}/bin/fish --login --interactive";
     };
   };
 
