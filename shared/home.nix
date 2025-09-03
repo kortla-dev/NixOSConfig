@@ -47,7 +47,7 @@ in {
   programs.fish.enable = true;
 
   home.file.".ssh/${config.home.username}.pub".text =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ0Nwz0rlwT6JTi0Tm9N1BuIXIEokZKFVLOzqTZOuPKb engelbrecht.neill@gmail.com";
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ0Nwz0rlwT6JTi0Tm9N1BuIXIEokZKFVLOzqTZOuPKb";
   home.file.".ssh/allowed_signers".text =
     "${user.email} ${config.home.file.".ssh/${config.home.username}.pub".text}";
 
