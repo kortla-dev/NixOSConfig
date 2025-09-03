@@ -13,6 +13,11 @@
 
   home-manager.backupFileExtension = "backup";
 
+  home-manager = {
+    #specialArgs = { inherit inputs; };
+    users = { kortla = import ./home.nix; };
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -79,11 +84,6 @@
       [
         #  thunderbird
       ];
-  };
-
-  home-manager = {
-    #specialArgs = { inherit inputs; };
-    users = { kortla = import ./users/kortla/home.nix; };
   };
 
   # Install firefox.
