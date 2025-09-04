@@ -22,6 +22,7 @@
       python3
       cargo
       rustc
+      xclip
       unzip
     ];
 

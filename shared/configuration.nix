@@ -2,19 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    #./hardware-configuration.nix
-    ./nixosModules/vim.nix
-  ];
+  imports = [ ./nixosModules/vim.nix ];
 
   home-manager.backupFileExtension = "backup";
 
-  home-manager = {
-    # specialArgs = { inherit inputs; };
+  home-manager = { # .
     users = { kortla = import ./home.nix; };
   };
 

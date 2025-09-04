@@ -11,7 +11,7 @@
     };
   };
 
-  config = {
+  config = lib.mkIf config.modules.terminal.enable {
     programs.fish.enable = true;
 
     programs.ghostty = {
