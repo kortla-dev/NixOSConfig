@@ -14,7 +14,7 @@
   home-manager.backupFileExtension = "backup";
 
   home-manager = {
-    #specialArgs = { inherit inputs; };
+    # specialArgs = { inherit inputs; };
     users = { kortla = import ./home.nix; };
   };
 

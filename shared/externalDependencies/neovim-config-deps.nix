@@ -8,4 +8,9 @@ with pkgs; [
   ripgrep
   nodejs_24
   python3
+
+  cargo
+  rustc
+
+  unzip
 ]

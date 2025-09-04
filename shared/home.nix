@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   user = {
     name = "Neill Engelbrecht";
@@ -9,6 +9,11 @@ in {
   # manage.
   home.username = "kortla";
   home.homeDirectory = "/home/kortla";
+
+  imports = [ ./modules ];
+
+  modules.neovim.enable = true;
+  modules.terminal.enable = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -47,12 +52,14 @@ in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.fish.enable = true;
+  home.file = {
+    ".ssh/${config.home.username}.pub".text =
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ0Nwz0rlwT6JTi0Tm9N1BuIXIEokZKFVLOzqTZOuPKb";
 
-  home.file.".ssh/${config.home.username}.pub".text =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ0Nwz0rlwT6JTi0Tm9N1BuIXIEokZKFVLOzqTZOuPKb";
-  home.file.".ssh/allowed_signers".text =
-    "${user.email} ${config.home.file.".ssh/${config.home.username}.pub".text}";
+    ".ssh/allowed_signers".text = "${user.email} ${
+        config.home.file.".ssh/${config.home.username}.pub".text
+      }";
+  };
 
   programs.git = {
     enable = true;
@@ -69,35 +76,6 @@ in {
           "${config.home.homeDirectory}/.ssh/allowed_signers";
       };
       commit.gpgsign = true;
-      safe.directory = "/etc/nixos";
     };
-  };
-
-  programs.ghostty = {
-    enable = true;
-    settings = {
-      font-size = 12;
-      font-family = "FiraMono Nerd Font";
-      font-style = "Medium";
-      font-style-bold = "false";
-      font-style-italic = "false";
-      font-style-bold-italic = "false";
-      font-synthetic-style = "false";
-
-      theme = "Ubuntu";
-
-      window-padding-x = 5;
-      window-padding-y = 5;
-      window-padding-balance = "true";
-
-      gtk-titlebar-hide-when-maximized = "true";
-
-      command = "${pkgs.fish.outPath}/bin/fish --login --interactive";
-    };
-  };
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
   };
 }

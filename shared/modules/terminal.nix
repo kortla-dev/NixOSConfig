@@ -1,0 +1,40 @@
+{ config, lib, pkgs, ... }:
+
+{
+  options.modules = {
+    terminal = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enabls Neovim package and config";
+      };
+    };
+  };
+
+  config = {
+    programs.fish.enable = true;
+
+    programs.ghostty = {
+      enable = true;
+      settings = {
+        font-size = 12;
+        font-family = "FiraMono Nerd Font";
+        font-style = "Medium";
+        font-style-bold = "false";
+        font-style-italic = "false";
+        font-style-bold-italic = "false";
+        font-synthetic-style = "false";
+
+        theme = "Ubuntu";
+
+        window-padding-x = 5;
+        window-padding-y = 5;
+        window-padding-balance = "true";
+
+        gtk-titlebar-hide-when-maximized = "true";
+
+        command = "${pkgs.fish.outPath}/bin/fish --login --interactive";
+      };
+    };
+  };
+}
