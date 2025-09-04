@@ -6,7 +6,7 @@
       enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
-        description = "Enabls Neovim package and config";
+        description = "Enables Ghostty package and config";
       };
     };
   };
