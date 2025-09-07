@@ -41,6 +41,7 @@ in {
             "${config.home.homeDirectory}/.ssh/allowed_signers";
         };
         commit.gpgsign = true;
+        init.defaultBranch = "master";
       };
     };
   };

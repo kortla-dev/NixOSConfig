@@ -2,8 +2,9 @@
 
 {
   imports = [ # .
-    ./neovim.nix
-    ./terminal.nix
     ./git.nix
+    ./terminal.nix
+    ./neovim.nix
+    ./nightlight.nix
   ];
 }

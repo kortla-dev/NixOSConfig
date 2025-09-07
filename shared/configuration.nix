@@ -35,12 +35,15 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_ZA.UTF-8";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
 
-  # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
+    # Enable the X11 windowing system.
+    enable = true;
+
+    # Enable the XFCE Desktop Environment.
+    displayManager.lightdm.enable = true;
+    desktopManager.xfce.enable = true;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -70,15 +73,13 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.fish.enable = true;
+
   users.users.kortla = {
     isNormalUser = true;
     description = "Neill Engelbrecht";
     extraGroups = [ "root" "networkmanager" "wheel" ];
-    packages = with pkgs;
-      [
-        #  thunderbird
-      ];
+    shell = pkgs.fish;
   };
 
   # Install firefox.

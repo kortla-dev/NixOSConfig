@@ -12,7 +12,14 @@
   };
 
   config = lib.mkIf config.modules.terminal.enable {
-    programs.fish.enable = true;
+
+    programs.fish = {
+      enable = true;
+      # plugins = [{
+      #   name = "tide";
+      #   src = pkgs.fishPlugins.tide.src;
+      # }];
+    };
 
     programs.ghostty = {
       enable = true;
@@ -25,7 +32,13 @@
         font-style-bold-italic = "false";
         font-synthetic-style = "false";
 
-        theme = "Ubuntu";
+        cursor-color = "#FFFFFF";
+        cursor-text = "#000000";
+
+        foreground = "#F5F5DC";
+
+        theme = "Solarized Dark Higher Contrast";
+        # theme = "Ubuntu";
 
         window-padding-x = 5;
         window-padding-y = 5;
@@ -33,7 +46,7 @@
 
         gtk-titlebar-hide-when-maximized = "true";
 
-        command = "${pkgs.fish.outPath}/bin/fish --login --interactive";
+        command = "fish --login --interactive";
       };
     };
   };

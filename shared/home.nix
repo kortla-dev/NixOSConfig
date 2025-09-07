@@ -37,16 +37,22 @@
 
     # other
     vlc
+    brave
+    kdePackages.falkon
   ];
 
-  home.sessionVariables = { EDITOR = "nvim"; };
+  home.sessionVariables = {
+    SHELL = "fish --login --interactive";
+    EDITOR = "nvim";
+  };
 
   imports = [ ./modules ];
 
   modules = {
-    neovim.enable = true;
-    terminal.enable = true;
     git.enable = true;
+    terminal.enable = true;
+    neovim.enable = true;
+    nightlight.enable = true;
   };
 
 }
