@@ -3,7 +3,7 @@
 let
   baseUrl = "https://st.suckless.org/patches";
   stCustom = pkgs.st.overrideAttrs {
-    src = ../../../config/st;
+    config = ../../../config/st/config.def.h;
     patches = [
       (pkgs.fetchpatch {
         url = "${baseUrl}/gruvbox/st-gruvbox-dark-0.8.5.diff";
@@ -36,5 +36,4 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = lib.mkIf (cfg.package != null) [ cfg.package ];
   };
-
 }
