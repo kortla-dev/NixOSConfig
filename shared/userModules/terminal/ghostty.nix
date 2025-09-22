@@ -1,25 +1,25 @@
-{ config, lib, pkgs, ... }:
-
-{
-  options.modules = {
-    terminal = {
+{ config, lib, ... }:
+let cfg = config.userModules.terminal.ghostty;
+in {
+  options.userModules.terminal = {
+    ghostty = {
       enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
         description = "Enables Ghostty package and config";
       };
+
+      command = lib.mkOption {
+        type = lib.types.str;
+        default = "fish --login --interactive";
+        description = "Shell or command to run in Ghostty.";
+      };
     };
   };
 
-  config = lib.mkIf config.modules.terminal.enable {
+  config = lib.mkIf cfg.enable {
 
-    programs.fish = {
-      enable = true;
-      # plugins = [{
-      #   name = "tide";
-      #   src = pkgs.fishPlugins.tide.src;
-      # }];
-    };
+    programs.fish.enable = true;
 
     programs.ghostty = {
       enable = true;
@@ -46,7 +46,7 @@
 
         gtk-titlebar-hide-when-maximized = "true";
 
-        command = "fish --login --interactive";
+        command = cfg.command;
       };
     };
   };

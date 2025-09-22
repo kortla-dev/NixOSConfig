@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 
-{
-  options.modules = {
+let cfg = config.userModules.textEditor.neovim;
+in {
+  options.userModules.textEditor = {
     neovim = {
       enable = lib.mkOption {
         type = lib.types.bool;
@@ -11,7 +12,7 @@
     };
   };
 
-  config = lib.mkIf config.modules.neovim.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       gcc
       gnumake

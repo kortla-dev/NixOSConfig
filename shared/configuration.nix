@@ -2,22 +2,20 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs,
+#system-modules,
+... }:
 
 {
-  imports = [ ./nixosModules/vim.nix ];
+  imports = [ ./systemModules/vim.nix ];
 
-  home-manager.backupFileExtension = "backup";
-
-  home-manager = { # .
-    users = { kortla = import ./home.nix; };
-  };
+  # inherit system-modules;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

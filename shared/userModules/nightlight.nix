@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 {
-  options.modules = {
+  options.userModules = {
     nightlight.enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
@@ -9,7 +9,7 @@
     };
   };
 
-  config = lib.mkIf config.modules.nightlight.enable {
+  config = lib.mkIf config.userModules.nightlight.enable {
     services.redshift = {
       enable = true;
       temperature = {
