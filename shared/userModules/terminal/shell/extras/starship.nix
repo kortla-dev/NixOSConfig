@@ -25,6 +25,12 @@ in {
       settings = {
         format = builtins.replaceStrings [ "\n" "\r" ] [ "" "" ] rawFmt;
 
+        palette = "base";
+
+        palettes.base = {
+          orange = "#f7a41d"; # #d65d0e
+        };
+
         username = {
           style = "bold yellow";
           format = "[$user]($style)";
@@ -38,15 +44,15 @@ in {
 
         };
 
-        directory = { style = "blue"; };
+        directory = { style = "bold blue"; };
 
         git_branch = {
-          style = "bright-black";
+          style = "bold bright-black";
           format = "[$branch]($style)";
         };
 
         git_status = {
-          style = "cyan";
+          style = "bold cyan";
           format =
             "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)";
           conflicted = "​";
@@ -59,56 +65,56 @@ in {
         };
 
         git_state = {
-          sytle = "bright-black";
+          sytle = "bold bright-black";
           format =
             "\\([$state( $progress_current/$progress_total)]($style)\\) ";
         };
 
         cmd_duration = {
-          style = "yellow";
+          style = "bold yellow";
           format = "[$duration]($style)";
         };
 
         c = {
           symbol = " ";
-          style = "bg:blue";
+          style = "bold orange";
           format = "[[$symbol($version)](fg:black bg:blue)]($style)";
         };
 
         cpp = {
           symbol = " ";
-          style = "bg:blue";
+          style = "bold orange";
           format = "[[$symbol($version)](fg:black bg:blue)]($style)";
         };
 
         rust = {
           symbol = " ";
-          style = "bg:blue";
+          style = "bold orange";
           format = "[[$symbol($version)](fg:black bg:blue)]($style)";
         };
 
         php = {
           symbol = " ";
-          style = "bg:blue";
+          style = "bold orange";
           format = "[[$symbol($version)](fg:black bg:blue)]($style)";
         };
 
         java = {
           symbol = " ";
-          style = "bg:blue";
+          style = "bold orange";
           format = "[[$symbol($version)](fg:black bg:blue)]($style)";
         };
 
         lua = {
           symbol = " ";
-          style = "bg:blue";
-          format = "[[$symbol($version)](fg:black bg:blue)]($style)";
+          style = "bold orange";
+          format = "[$symbol($version)]($style)";
         };
 
         zig = {
           symbol = " ";
-          style = "bg:blue";
-          format = "[[$symbol($version)](fg:black bg:blue)]($style)";
+          style = "bold orange";
+          format = "[$symbol($version)]($style)";
         };
 
         line_break = { disabled = false; };
