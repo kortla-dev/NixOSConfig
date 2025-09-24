@@ -2,7 +2,7 @@
 let cfg = config.userModules.terminal.ghostty;
 in {
   options.userModules.terminal = {
-    ghostty = {
+    alacritty = {
       enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
@@ -11,7 +11,7 @@ in {
 
       command = lib.mkOption {
         type = lib.types.str;
-        default = ""; # fish --login --interactive
+        default = "fish --login --interactive";
         description = "Shell or command to run in Ghostty.";
       };
     };
@@ -19,7 +19,7 @@ in {
 
   config = lib.mkIf cfg.enable {
 
-    # programs.fish.enable = true;
+    programs.fish.enable = true;
 
     programs.ghostty = {
       enable = true;
@@ -37,8 +37,7 @@ in {
 
         foreground = "#F5F5DC";
 
-        theme = "GruvboxDark";
-        # theme = "Solarized Dark Higher Contrast";
+        theme = "Solarized Dark Higher Contrast";
         # theme = "Ubuntu";
 
         window-padding-x = 5;

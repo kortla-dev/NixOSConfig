@@ -1,6 +1,6 @@
 {
   imports = [ # .
+    ./shell
     ./ghostty.nix
-    ./st.nix
   ];
 }

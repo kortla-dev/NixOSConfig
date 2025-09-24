@@ -1,13 +1,18 @@
 { config, pkgs, lib, ... }:
 
 let
-  baseUrl = "https://st.suckless.org/patches";
-  stCustom = pkgs.st.overrideAttrs {
-    config = ../../../config/st/config.def.h;
+  baseUrl = "https://st.suckless.org/patches/";
+  stCustom = pkgs.st.override {
+    conf = builtins.readFile ../../../config/st/config.def.h;
     patches = [
       (pkgs.fetchpatch {
-        url = "${baseUrl}/gruvbox/st-gruvbox-dark-0.8.5.diff";
+        url = "${baseUrl}gruvbox/st-gruvbox-dark-0.8.5.diff";
         sha256 = "sha256-dOkrjXGxFgIRy4n9g2RQjd8EBAvpW4tNmkOVj4TaFGg=";
+      })
+      (pkgs.fetchpatch {
+        url =
+          "${baseUrl}autocomplete/st-0.8.5-autocomplete-20220327-230120.diff";
+        sha256 = "sha256-tXilaOVz196YoFHd1kChbPYy0d5rh/h/6lQGvIDEH38=";
       })
     ];
   };
@@ -34,6 +39,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = lib.mkIf (cfg.package != null) [ cfg.package ];
+    home.packages = lib.mkIf (cfg.package != null) [ stCustom ];
   };
 }

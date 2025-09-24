@@ -22,17 +22,23 @@
           hostname = "shittyLaptop";
           hardware = [ ./hosts/shittyLaptop/hardware-configuration.nix ];
           homenix = ./shared/home.nix;
-          # systemModules = { };
+          systemModules = {
+            display = {
+              enable = true;
+              displayManager = "lightdm";
+              manager = "xfce4";
+            };
+          };
           userModules = {
             git.enable = true;
             textEditor.neovim.enable = true;
 
             terminal = {
-              ghostty = {
-                enable = true;
-                command = "fish --login --interactive";
+              shell = {
+                fish.enable = true;
+                extras.starship.enable = true;
               };
-              st.enable = true;
+              ghostty = { enable = true; };
             };
 
             nightlight.enable = true;
@@ -42,7 +48,10 @@
 
       mkHost = name: host:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs user; };
+          specialArgs = {
+            inherit inputs user;
+            inherit (host) systemModules;
+          };
           modules = [ ./shared/configuration.nix ] ++ host.hardware ++ [
             home-manager.nixosModules.default
             {
