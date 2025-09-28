@@ -4,5 +4,6 @@
     ./nightlight.nix
     ./terminal
     ./textEditor
+    ./displayConfig
   ];
 }

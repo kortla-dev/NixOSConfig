@@ -20,10 +20,7 @@ in {
     kdePackages.falkon
   ];
 
-  home.sessionVariables = {
-    SHELL = "fish --login --interactive";
-    EDITOR = "nvim";
-  };
+  home.sessionVariables = { EDITOR = "nvim"; };
 
   imports = [ ./userModules ];
 

@@ -13,9 +13,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
   nix.settings = {
     auto-optimise-store = true;
     experimental-features = [ "nix-command" "flakes" ];
@@ -33,16 +30,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_ZA.UTF-8";
-
-  # services.xserver = {
-  #
-  #   # Enable the X11 windowing system.
-  #   enable = true;
-  #
-  #   # Enable the XFCE Desktop Environment.
-  #   displayManager.lightdm.enable = true;
-  #   desktopManager.xfce.enable = true;
-  # };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -82,24 +69,8 @@
     #  wget
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -1,10 +1,9 @@
 { config, lib, ... }:
 let
   cfg = config.systemModules.display;
-  allowedDm = [ "none" "lightdm" ];
-  allowedWm = [ "none" "xfce4" ];
+  allowedDm = [ "none" "ly" "lightdm" ];
+  allowedWm = [ "none" "i3" "xfce4" ];
 in {
-
   imports = [ # .
     ./displayManager
     ./managers

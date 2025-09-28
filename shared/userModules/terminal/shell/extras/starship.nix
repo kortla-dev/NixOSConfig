@@ -5,7 +5,7 @@ let
   rawFmt = ''
     $username$hostname $directory$git_branch$git_state$git_status$cmd_duration
     $line_break
-    $zig$c$lua$rust$cpp$java$php$character
+    $character
   '';
 in {
   options.userModules.terminal.shell.extras = {
@@ -32,7 +32,7 @@ in {
         };
 
         username = {
-          style = "bold yellow";
+          style_user = "bold yellow";
           format = "[$user]($style)";
           show_always = true;
         };
@@ -65,7 +65,7 @@ in {
         };
 
         git_state = {
-          sytle = "bold bright-black";
+          style = "bold bright-black";
           format =
             "\\([$state( $progress_current/$progress_total)]($style)\\) ";
         };
@@ -73,48 +73,6 @@ in {
         cmd_duration = {
           style = "bold yellow";
           format = "[$duration]($style)";
-        };
-
-        c = {
-          symbol = " ";
-          style = "bold orange";
-          format = "[[$symbol($version)](fg:black bg:blue)]($style)";
-        };
-
-        cpp = {
-          symbol = " ";
-          style = "bold orange";
-          format = "[[$symbol($version)](fg:black bg:blue)]($style)";
-        };
-
-        rust = {
-          symbol = " ";
-          style = "bold orange";
-          format = "[[$symbol($version)](fg:black bg:blue)]($style)";
-        };
-
-        php = {
-          symbol = " ";
-          style = "bold orange";
-          format = "[[$symbol($version)](fg:black bg:blue)]($style)";
-        };
-
-        java = {
-          symbol = " ";
-          style = "bold orange";
-          format = "[[$symbol($version)](fg:black bg:blue)]($style)";
-        };
-
-        lua = {
-          symbol = " ";
-          style = "bold orange";
-          format = "[$symbol($version)]($style)";
-        };
-
-        zig = {
-          symbol = " ";
-          style = "bold orange";
-          format = "[$symbol($version)]($style)";
         };
 
         line_break = { disabled = false; };

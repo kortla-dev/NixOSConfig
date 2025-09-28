@@ -26,22 +26,27 @@
             display = {
               enable = true;
               displayManager = "lightdm";
-              manager = "xfce4";
+              manager = "i3";
             };
           };
           userModules = {
             git.enable = true;
             textEditor.neovim.enable = true;
-
             terminal = {
               shell = {
                 fish.enable = true;
                 extras.starship.enable = true;
               };
-              ghostty = { enable = true; };
+              ghostty = {
+                enable = true;
+                command = "fish --login --interactive";
+              };
             };
-
             nightlight.enable = true;
+            displayConfig.i3 = {
+              enable = true;
+              terminal = "ghostty";
+            };
           };
         };
       };

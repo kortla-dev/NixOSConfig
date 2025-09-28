@@ -20,7 +20,7 @@ in {
       enable = true;
 
       # Enable the XFCE Desktop Environment.
-      displayManager.lightdm.enable = true;
+      # displayManager.lightdm.enable = true;
       desktopManager.xfce.enable = true;
     };
   };

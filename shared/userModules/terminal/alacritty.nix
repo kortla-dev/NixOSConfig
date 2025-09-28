@@ -19,8 +19,6 @@ in {
 
   config = lib.mkIf cfg.enable {
 
-    programs.fish.enable = true;
-
     programs.ghostty = {
       enable = true;
       settings = {

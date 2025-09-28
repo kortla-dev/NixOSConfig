@@ -1,7 +1,6 @@
-let username = "kortla";
-in {
-  inherit username;
+rec {
   name = "Neill Engelbrecht";
+  username = "kortla";
   email = "engelbrecht.neill@gmail.com";
   homeDir = "/home/${username}";
   ssh.pubKey =

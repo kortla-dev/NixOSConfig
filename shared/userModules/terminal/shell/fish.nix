@@ -14,7 +14,10 @@ in {
   config = lib.mkIf cfg.enable { # .
     programs.fish = {
       enable = true;
-      shellAliases = { "dotf" = "cd ~/.config/"; };
+      shellAliases = {
+        "dotf" = "cd ~/.config/";
+        "nconf" = "~/.config/nvim/";
+      };
     };
   };
 }

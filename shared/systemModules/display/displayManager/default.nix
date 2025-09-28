@@ -1,1 +1,1 @@
-{ imports = [ ./lightdm.nix ]; }
+{ imports = [ ./lightdm.nix ./ly.nix ]; }

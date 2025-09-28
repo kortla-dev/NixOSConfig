@@ -1,1 +1,1 @@
-{ imports = [ ./xfce4.nix ]; }
+{ imports = [ ./xfce4.nix ./i3.nix ]; }
