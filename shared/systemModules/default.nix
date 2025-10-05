@@ -3,5 +3,6 @@
     ./audio.nix
     ./display
     ./textEditor
+    ./gaming
   ];
 }

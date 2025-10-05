@@ -35,7 +35,7 @@ in {
 
     home.activation.nvimConfigClone =
       lib.hm.dag.entryAfter [ "writeBoundry" ] ''
-        logfile="${user.info.homeDir}/nixos-config/buildlogs.log"
+        logfile="${user.info.homeDir}/dotfile/nixos/buildlogs.log"
 
         echo "-----------------------------------------------" >> "$logfile"
 

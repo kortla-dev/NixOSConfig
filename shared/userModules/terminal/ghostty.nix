@@ -37,7 +37,7 @@ in {
 
         foreground = "#F5F5DC";
 
-        theme = "GruvboxDark";
+        theme = "Gruvbox Dark";
         # theme = "Solarized Dark Higher Contrast";
         # theme = "Ubuntu";
 

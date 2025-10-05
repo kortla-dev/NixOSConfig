@@ -18,7 +18,13 @@ in {
     btop
     # other
     kdePackages.falkon
+
+    keepassxc
   ];
+
+  # TODO: make module for direnv
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 
   home.sessionVariables = { EDITOR = "nvim"; };
 

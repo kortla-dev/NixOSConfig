@@ -28,6 +28,7 @@
               displayManager = "lightdm";
               manager = "i3";
             };
+            gaming.steam.enable = true;
           };
           userModules = {
             git.enable = true;
