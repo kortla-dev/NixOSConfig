@@ -3,9 +3,8 @@ let
   cfg = config.userModules.terminal.shell.extras.starship;
 
   rawFmt = ''
-    $username$hostname $directory$git_branch$git_state$git_status$cmd_duration
-    $line_break
-    $character
+    $username$hostname $directory$git_branch$git_state$git_status$cmd_duration$fill$nix_shell
+    $line_break$character
   '';
 in {
   options.userModules.terminal.shell.extras = {
@@ -76,6 +75,14 @@ in {
         };
 
         line_break = { disabled = false; };
+
+        nix_shell = {
+          style = "bold blue";
+          # impure_msg = "[impure](bold red)";
+          # pure_msg = "[pure shell](bold green)";
+          # unknown_msg = "[unknown shell](bold yellow)";
+          format = "[\\($name\\)]($style)";
+        };
 
         character = {
           success_symbol = "[❯](bold red)";
