@@ -23,10 +23,11 @@
           hardware = [ ./hosts/shittyLaptop/hardware-configuration.nix ];
           homenix = ./shared/home.nix;
           systemModules = {
+            audio.enable = true;
             display = {
               enable = true;
               displayManager = "lightdm";
-              manager = "i3";
+              manager = "xfce4";
             };
             gaming.steam.enable = true;
           };

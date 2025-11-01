@@ -13,16 +13,19 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-
     services.xserver = {
-
       # Enable the X11 windowing system.
       enable = true;
 
       # Enable the XFCE Desktop Environment.
       # displayManager.lightdm.enable = true;
-      desktopManager.xfce.enable = true;
+      desktopManager.xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
+      windowManager.i3.enable = true;
     };
+    services.displayManager.defaultSession = "xfce";
   };
-
 }
